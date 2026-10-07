@@ -1,4 +1,4 @@
-package com.sdlc.pro.eosb_data_jpa;
+package com.sdlc.pro.eosb_data_jpa.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
