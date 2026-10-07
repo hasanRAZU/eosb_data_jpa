@@ -5,4 +5,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentDao extends JpaRepository<Student, Integer> {
+
+    public static void main(String[] args) {
+        System.out.println("Student Dao Added");
+    }
 }
