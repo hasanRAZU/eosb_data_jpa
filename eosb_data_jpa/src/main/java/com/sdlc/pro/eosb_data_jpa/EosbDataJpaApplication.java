@@ -14,6 +14,6 @@ public class EosbDataJpaApplication implements CommandLineRunner
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Command Line Runner Added");
+		// System.out.println("Command Line Runner Added");
 	}
 }
