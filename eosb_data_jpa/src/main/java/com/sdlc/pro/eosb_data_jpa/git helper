@@ -1,12 +1,32 @@
-#see all the branch in github:
+# Clone a repository
+    git clone repository_url.....
+
+# See all the branch in github:
     git branch -a
 
-#create/track a repository from github:
+# Create/track a repository from github:
     git switch --track origin/branch_name
 
-# edit your code
+# Edit your code
     git add .
     git commit -m "Add lecture 54 changes"
     git push -u origin monjurul/lecture54-work
 
 
+
+#pull the original/latest files from master
+    git switch master
+    git pull origin master
+
+
+
+# Notice: Understand between "git rebase" and "pull origin main_master" -> Then go Forward
+# Rebase your current branch
+    # 1. Save your current changes temporarily
+        git stash push -m "changes before rebase"
+
+    # 2. Rebase onto the target branch
+        git rebase origin/monjurul/lecture_55
+
+    # Restore your changes ??
+        git stash pop
