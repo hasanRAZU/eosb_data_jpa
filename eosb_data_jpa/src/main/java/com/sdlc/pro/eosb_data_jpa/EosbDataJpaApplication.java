@@ -1,27 +1,32 @@
 package com.sdlc.pro.eosb_data_jpa;
 
-import com.sdlc.pro.eosb_data_jpa.dao.StudentDao;
 import com.sdlc.pro.eosb_data_jpa.entity.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
-@SpringBootApplication
-public class EosbDataJpaApplication implements CommandLineRunner
-{
 
-	@Autowired
-	StudentDao studentDao;
+// @SpringBootApplication
+public class EosbDataJpaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EosbDataJpaApplication.class, args);
-	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		studentDao.save(new Student(null, "Monjurul", 3.6f));
-		studentDao.save(new Student(null, "Hasan", 3.7f));
-		studentDao.save(new Student(null, "Razu", 3.8f));
-	}
+    public static void main(String[] args) {
+        //SpringApplication.run(EosbDataJpaApplication.class, args);
+
+        Student student1 = new Student(null, "Razu", 3.6f);
+
+        System.out.println(student1);
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("postgres-unit");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(student1);
+            entityManager.getTransaction().commit();
+
+        } catch (Exception ignored) {
+        }
+        entityManagerFactory.close();
+
+    }
 }
