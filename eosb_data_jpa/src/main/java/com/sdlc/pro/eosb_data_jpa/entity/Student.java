@@ -13,7 +13,12 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String name;
     private float cgpa;
+
+    public Student(String name, float cgpa){
+        this.name = name;
+        this.cgpa = cgpa;
+    }
 }

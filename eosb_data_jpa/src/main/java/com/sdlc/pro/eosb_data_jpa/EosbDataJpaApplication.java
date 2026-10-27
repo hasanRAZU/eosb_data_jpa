@@ -18,15 +18,20 @@ public class EosbDataJpaApplication {
     public static void main(String[] args) {
         //SpringApplication.run(EosbDataJpaApplication.class, args);
 
-
-
         transactional(entityManager ->
         {
-            Student student1 = new Student(null, "Monjurul Hasan Razu", 3.77f);
-            entityManager.persist(student1);
+
+            var student = entityManager.find(Student.class, 15);
+
+            student.setName("New Name Given");
+
+            entityManager.detach(student);
+
+            student.setCgpa(3.0f);
+
+            entityManager.merge(student);
+
         });
-
-
     }
 
 
