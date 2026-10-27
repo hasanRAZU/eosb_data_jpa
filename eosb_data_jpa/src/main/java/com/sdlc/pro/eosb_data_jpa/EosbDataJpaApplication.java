@@ -1,6 +1,7 @@
 package com.sdlc.pro.eosb_data_jpa;
 
 import com.sdlc.pro.eosb_data_jpa.entity.Student;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -17,14 +18,20 @@ public class EosbDataJpaApplication {
     public static void main(String[] args) {
         //SpringApplication.run(EosbDataJpaApplication.class, args);
 
-
         transactional(entityManager ->
         {
-            Student student1 = new Student(null, "Monjurul Hasan Razu", 3.77f);
-            entityManager.persist(student1);
+
+            var student = entityManager.find(Student.class, 15);
+
+            student.setName("New Name Given");
+
+            entityManager.detach(student);
+
+            student.setCgpa(3.0f);
+
+            entityManager.merge(student);
+
         });
-
-
     }
 
 
@@ -50,6 +57,18 @@ public class EosbDataJpaApplication {
     }
 }
 
+    /*
+
+    @Entity
+    Persistence
+        EntityManagerFactory
+            EntityManager
+            EntityTransaction
+                Query, TypedQuery
+                @CriteriaQuery
+
+    */
+
 
 // Transaction Open -> Not Commited ???
-        // Data is stored in 'Buffered Cache in Database Engine' , also called 'First level Cache'
+// Data is stored in 'Buffered Cache in Database Engine' , also called 'First level Cache'
