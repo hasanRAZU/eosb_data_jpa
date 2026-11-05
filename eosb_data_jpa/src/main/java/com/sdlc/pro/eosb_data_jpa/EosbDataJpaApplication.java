@@ -6,7 +6,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.hibernate.Transaction;
+import org.hibernate.engine.spi.PersistenceContext;
+import org.hibernate.engine.spi.SessionImplementor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 
@@ -21,17 +25,28 @@ public class EosbDataJpaApplication {
         transactional(entityManager ->
         {
 
-            var student = entityManager.find(Student.class, 15);
 
-            student.setName("New Name Given");
+            entityManager.find(Student.class, 11);
+            entityManager.find(Student.class, 13);
+            entityManager.find(Student.class, 15);
 
-            entityManager.detach(student);
 
-            student.setCgpa(3.0f);
 
-            entityManager.merge(student);
 
+
+            // Check all the Entity which are in 'Persistent' state
+            SessionImplementor session =
+                    entityManager.unwrap(SessionImplementor.class);
+
+            PersistenceContext persistenceContext =
+                    session.getPersistenceContext();
+
+            for (Object entity : persistenceContext.getEntitiesByKey().values()) {
+                System.out.println("Entity: " + entity);
+            }
         });
+
+
     }
 
 

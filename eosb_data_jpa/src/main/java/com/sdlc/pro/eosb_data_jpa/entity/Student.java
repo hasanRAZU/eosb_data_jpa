@@ -2,6 +2,7 @@ package com.sdlc.pro.eosb_data_jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Getter
@@ -9,6 +10,8 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+
+@DynamicUpdate
 public class Student {
 
     @Id
