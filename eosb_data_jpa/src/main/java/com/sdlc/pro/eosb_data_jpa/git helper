@@ -1,7 +1,7 @@
 # Clone a repository
     git clone repository_url.....
 
-# See all the branch in github:
+# See all the branch (including remote branch) in github:
     git branch -a
 
 # Create/track a repository from github:
